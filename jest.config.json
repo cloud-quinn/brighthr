@@ -1,0 +1,9 @@
+{
+    "collectCoverageFrom": [
+        "src/**/*.{js,jsx,mjs}"
+    ],
+    "coverageReporters": ["text", "lcov", "text-summary"],
+    "testMatch": [
+        "<rootDir>/src/**/*(*.)spec.js"
+    ]
+}
