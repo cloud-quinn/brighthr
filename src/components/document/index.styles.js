@@ -15,8 +15,8 @@ export const FileList = styled.ul`
 `;
 
 export const Folder = styled(File).attrs({
-    role: 'button',
-    tabIndex: 0,
+  role: 'button',
+  tabIndex: 0,
 })`
     cursor: pointer;
 `;
