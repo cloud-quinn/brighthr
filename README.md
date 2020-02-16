@@ -7,7 +7,7 @@ We have a section of our app where users can access documents that administrator
 3. Sort by name/size/date
 4. Filter by filename
 
-The recommended timebox was about an hour. I was able to complete tasks 1 and 2.
+The recommended timebox was about an hour. As such, I was unable to complete tasks 3 and 4, but I did create some generic helpers that could form the basis of the UI task. I also didn't have time to style the page very nicely, concentrating instead on ensuring that appropriate affordances and accessibility features were in place to make the page usable pending more in-depth design and styling work.
 
 ## Demo
 

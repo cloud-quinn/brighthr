@@ -9,13 +9,13 @@ Enzyme.configure({ adapter: new Adapter() });
 const getHeader = () => shallow(<Header />);
 
 describe('Header Component', () => {
-  let header;
+    let header;
 
-  beforeAll(() => {
-    header = getHeader();
-  });
+    beforeAll(() => {
+        header = getHeader();
+    });
 
-  it('renders', () => {
-    expect(header.exists()).toBe(true);
-  });
+    it('renders', () => {
+        expect(header.exists()).toBe(true);
+    });
 });
