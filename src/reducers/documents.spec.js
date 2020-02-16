@@ -41,29 +41,64 @@ describe('Reducer: documents', () => {
   });
 
   describe('Documents fetched action', () => {
-    const mockDocuments = [{
-      type: 'mockType',
-      name: 'Mock Name',
-      added: '2020-02-14',
-    }];
-    beforeAll(() => {
-      const mockFetchedAction = {
-        type: DOCUMENTS_FETCHED,
-        payload: mockDocuments,
-      };
-      reducerState = documentsReducer({}, mockFetchedAction);
+    describe('Happy path', () => {
+      const mockDocuments = [{
+        type: 'mockType',
+        name: 'Mock Name',
+        added: '2020-01-01',
+      }];
+      beforeAll(() => {
+        const mockFetchedAction = {
+          type: DOCUMENTS_FETCHED,
+          payload: mockDocuments,
+          error: false,
+        };
+        reducerState = documentsReducer({}, mockFetchedAction);
+      });
+
+      afterAll(() => {
+        reducerState = undefined;
+      });
+
+      it('sets the "fetching" flag to false', () => {
+        expect(reducerState.fetching).toBe(false);
+      });
+
+      it('updates the array of all documents', () => {
+        expect(reducerState.all).toEqual(mockDocuments);
+      });
+
+      it('indicates no errors have occurred', () => {
+        expect(reducerState.error).toBe(false);
+      });
     });
 
-    afterAll(() => {
-      reducerState = undefined;
-    });
+    describe('Error state', () => {
+      const mockError = new Error('Test Error from fetch helper');
+      beforeAll(() => {
+        const mockFetchedAction = {
+          type: DOCUMENTS_FETCHED,
+          payload: mockError,
+          error: true,
+        };
+        reducerState = documentsReducer({}, mockFetchedAction);
+      });
 
-    it('sets the "fetching" flag to false', () => {
-      expect(reducerState.fetching).toBe(false);
-    });
+      afterAll(() => {
+        reducerState = undefined;
+      });
 
-    it('updates the array of all documents', () => {
-      expect(reducerState.all).toEqual(mockDocuments);
+      it('sets the "fetching" flag to false', () => {
+        expect(reducerState.fetching).toBe(false);
+      });
+
+      it('does not update the array of all documents', () => {
+        expect(reducerState.all.length).toBe(0);
+      });
+
+      it('indicates that an error has occurred', () => {
+        expect(reducerState.error).toBe(true);
+      });
     });
   });
 });

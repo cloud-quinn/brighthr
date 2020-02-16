@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import getAllDocuments from '../../actions/getAllDocuments';
-import Container from '../../components/container';
+import { Container, Document } from '../../components';
+import documentSchema from '../../schemas/document';
 
 @connect(
   (state) => ({
@@ -15,7 +17,7 @@ import Container from '../../components/container';
 )
 export default class HomePage extends React.Component {
     static propTypes = {
-      documents: PropTypes.arrayOf(PropTypes.shape({})),
+      documents: PropTypes.arrayOf(documentSchema),
       getAllDocuments: PropTypes.func.isRequired,
     };
 
@@ -33,9 +35,7 @@ export default class HomePage extends React.Component {
       return (
         <Container>
           <h1>Documents</h1>
-          <div>
-            {documents.map((doc) => JSON.stringify(doc))}
-          </div>
+          {documents.map((document) => <Document key={document.id} document={document} />)}
         </Container>
       );
     }

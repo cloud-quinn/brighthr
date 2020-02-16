@@ -16,7 +16,8 @@
                 ]
             }
         ],
-        "react/static-property-placement": 0
+        "react/static-property-placement": 0,
+        "max-len": 0
     },
     "parserOptions": {
         "ecmaFeatures": {
